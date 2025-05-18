@@ -37,7 +37,7 @@ gradlePlugin {
         }
         register("uiLibrary") {
             id = "dev.kevin.ui.library"
-            implementationClass = "UiLibraryConventionPlugin"
+            implementationClass = "UILibraryConventionPlugin"
         }
         register("application") {
             id = "dev.kevin.application"
