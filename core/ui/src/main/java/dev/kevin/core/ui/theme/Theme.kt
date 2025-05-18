@@ -1,4 +1,4 @@
-package com.example.vo_donate.ui.theme
+package dev.kevin.core.ui.theme
 
 import android.app.Activity
 import android.os.Build
