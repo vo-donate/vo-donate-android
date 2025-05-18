@@ -2,7 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetpack.dagger.hilt)
     alias(libs.plugins.jetpack.firebase)
-    alias(libs.plugins.jetpack.dokka)
+    alias(libs.plugins.dokka)
+    alias(libs.plugins.kotlin)
 }
 
 android {
@@ -38,19 +39,23 @@ android {
         compose = true
         buildConfig = true
     }
-    /**
+
     kotlinOptions {
         jvmTarget = "21"
     }
-    */
 }
 
 dependencies {
+    // ... Core
+    implementation(project(":core:ui"))
+    implementation(project(":core:network"))
+
     // ... Splash Screen
     implementation(libs.androidx.core.splashscreen)
 
     // ... OSS Licenses
     implementation(libs.google.oss.licenses)
+    implementation(libs.androidx.core.ktx)
 
     // ... LeakCanary
     debugImplementation(libs.leakcanary.android)
