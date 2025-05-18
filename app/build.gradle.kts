@@ -55,7 +55,6 @@ dependencies {
 
     // ... OSS Licenses
     implementation(libs.google.oss.licenses)
-    implementation(libs.androidx.core.ktx)
 
     // ... LeakCanary
     debugImplementation(libs.leakcanary.android)

@@ -5,10 +5,11 @@ java = "21"
 kotlin = "2.1.20"
 androidGradlePlugin = "8.10.0"
 gmsPlugin = "4.4.2"
-ksp = "2.1.20-2.0.1"
+ksp = "2.1.21-2.0.1"
 dokka = "2.0.0"
 dokkaMermaid = "0.6.0"
 secrets = "2.0.1"
+jetbrainsKotlinJvm = "2.1.21"
 
 # ... CORE:ANDROID ...
 androidxCore = "1.16.0"
@@ -73,9 +74,12 @@ junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 material = "1.10.0"
 
+# ... WEB3J ...
+web3j = "4.12.3-android"
+
 [plugins]
 
-kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin = { id = "org.jetbrains.kotlin.android", version = "2.1.21" }
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
@@ -95,6 +99,7 @@ jetpack-application = { id = "dev.kevin.application" }
 jetpack-dagger-hilt = { id = "dev.kevin.dagger.hilt" }
 jetpack-firebase = { id = "dev.kevin.firebase" }
 jetpack-dokka = { id = "dev.kevin.dokka" }
+jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 
 [libraries]
 
@@ -201,3 +206,6 @@ junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+
+#... WEB3J ...
+web3j = { group = "org.web3j", name = "core", version.ref = "web3j" }
