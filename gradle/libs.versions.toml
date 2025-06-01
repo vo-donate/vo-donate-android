@@ -1,7 +1,7 @@
 [versions]
 
 # ... PROJECT ...
-java = "21"
+java = "17"
 kotlin = "2.1.20"
 androidGradlePlugin = "8.10.0"
 gmsPlugin = "4.4.2"
@@ -74,8 +74,16 @@ junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 material = "1.10.0"
 
+# ... TESTING ...
+junitJupiter = "5.10.2"
+mockito = "5.12.0"
+kotlinTest = "2.1.21"
+
 # ... WEB3J ...
-web3j = "4.12.3-android"
+web3j-android = "4.12.3-android"
+web3j-core = "4.14.0"
+klaytn-ext = "v0.9.3"
+klaytn-rpc = "v0.9.0"
 
 [plugins]
 
@@ -99,7 +107,9 @@ jetpack-application = { id = "dev.kevin.application" }
 jetpack-dagger-hilt = { id = "dev.kevin.dagger.hilt" }
 jetpack-firebase = { id = "dev.kevin.firebase" }
 jetpack-dokka = { id = "dev.kevin.dokka" }
+jetpack-test = { id = "dev.kevin.test" }
 jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
+jetpack-web3j = { id = "dev.kevin.web3" }
 
 [libraries]
 
@@ -207,5 +217,15 @@ androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "j
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
+# ... TESTING ...
+junit-jupiter-api = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junitJupiter" }
+junit-jupiter-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junitJupiter" }
+mockito-core = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
+mockito-junit-jupiter = { group = "org.mockito", name = "mockito-junit-jupiter", version.ref = "mockito" }
+kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlinTest" }
+
 #... WEB3J ...
-web3j = { group = "org.web3j", name = "core", version.ref = "web3j" }
+web3j-android = { group = "org.web3j", name = "core", version.ref = "web3j-android" }
+web3j-core = { group = "org.web3j", name = "core", version.ref = "web3j-core" }
+web3j-klaytn = { group = "foundation.klaytn", name = "web3j-ext", version.ref = "klaytn-ext" }
+web3j-klaytn-rpc = { group = "foundation.klaytn", name = "web3rpc-java", version.ref = "klaytn-rpc" }
