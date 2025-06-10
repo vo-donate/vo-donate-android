@@ -1,13 +1,14 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetpack.dagger.hilt)
-    alias(libs.plugins.jetpack.firebase)
+    // alias(libs.plugins.jetpack.firebase)
     alias(libs.plugins.dokka)
     alias(libs.plugins.kotlin)
+    alias(libs.plugins.kotlin.compose.compiler)
 }
 
 android {
-    namespace = "kevin.dev.vo_donate"
+    namespace = "dev.kevin.vo_donate"
     compileSdk = 35
 
     defaultConfig {
@@ -31,8 +32,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     buildFeatures {
@@ -41,7 +42,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "21"
+        jvmTarget = "17"
     }
 }
 
@@ -49,6 +50,9 @@ dependencies {
     // ... Core
     implementation(project(":core:ui"))
     implementation(project(":core:network"))
+
+    // ... Data
+    implementation(project(":data"))
 
     // ... Splash Screen
     implementation(libs.androidx.core.splashscreen)
