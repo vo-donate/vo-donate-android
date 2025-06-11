@@ -15,7 +15,7 @@ class AuthRepositoryImpl(private val networkDataSource: NetworkDataSource) : Aut
         networkDataSource.login(LoginRequest(id, password)).onSuccess {
             return it
         }
-        return LoginResponse("Login Failed")
+        return LoginResponse("Login Failed", "-1")
     }
 
     override suspend fun register(
@@ -35,7 +35,6 @@ class AuthRepositoryImpl(private val networkDataSource: NetworkDataSource) : Aut
             return it
         }
         return UserInfoResponse("-1", "Cannot Get UserName", "-1", "Unknown User")
-
     }
 
     override suspend fun getUserBalance(): UserBalanceResponse {
@@ -51,5 +50,9 @@ class AuthRepositoryImpl(private val networkDataSource: NetworkDataSource) : Aut
             return it
         }
         return WithDrawResponse("Withdraw Failed")
+    }
+
+    override fun checkInitialLoginStatus(): Boolean {
+        return networkDataSource.isLoggedIn()
     }
 }

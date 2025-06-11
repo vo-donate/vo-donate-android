@@ -17,4 +17,5 @@ interface AuthRepository {
 
     suspend fun withdraw(id: String) : WithDrawResponse
 
+    fun checkInitialLoginStatus() : Boolean
 }

@@ -57,4 +57,8 @@ class ProposalRepositoryImpl(private val networkDataSource: NetworkDataSource) :
         }
         return VoteResponse("Vote Failed")
     }
+
+    override fun checkInitialLoginStatus(): Boolean {
+        return networkDataSource.isLoggedIn()
+    }
 }

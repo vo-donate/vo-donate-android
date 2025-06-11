@@ -38,4 +38,6 @@ interface NetworkDataSource {
     suspend fun donate(id: String, request: DonationRequest): NetworkResult<DonationResponse, NetworkError>
 
     suspend fun withdraw(id: String): NetworkResult<WithDrawResponse, NetworkError>
+
+    fun isLoggedIn() : Boolean
 }

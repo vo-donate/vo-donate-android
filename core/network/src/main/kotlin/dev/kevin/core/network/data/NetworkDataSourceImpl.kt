@@ -22,6 +22,7 @@ import dev.kevin.core.network.util.NetworkResult
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import retrofit2.Response
+import timber.log.Timber
 import java.io.IOException
 
 
@@ -101,7 +102,10 @@ class NetworkDataSourceImpl(
         }
     }
 
-    override suspend fun vote(id: String, voteRequest: VoteRequest): NetworkResult<VoteResponse, NetworkError> {
+    override suspend fun vote(
+        id: String,
+        voteRequest: VoteRequest
+    ): NetworkResult<VoteResponse, NetworkError> {
         return withContext(ioDispatcher) {
             safeApiCall {
                 networkApi.vote(id, voteRequest)
@@ -117,22 +121,30 @@ class NetworkDataSourceImpl(
         }
     }
 
+    override fun isLoggedIn(): Boolean {
+        return networkModule.hasAccessToken()
+    }
+
     private suspend fun <T : Any> safeApiCall(call: suspend () -> Response<T>): NetworkResult<T, NetworkError> {
         return try {
             val response = call()
-            response.takeIf { it.isSuccessful }?.let { response ->
-                val body = response.body()
-                if (body != null) {
-                    NetworkResult.Success(body)
-                } else {
-                    NetworkResult.Error(NetworkError.UNKNOWN, "Response body is null")
+            Timber.d("Response: $response")
+            if (response.isSuccessful) {
+                response.let {
+                    val body = response.body()
+                    if (body != null) {
+                        NetworkResult.Success(body)
+                    } else {
+                        NetworkResult.Error(NetworkError.UNKNOWN, "Response body is null")
+                    }
                 }
+            } else {
+                mapResponseCodeToNetworkError(
+                    response.code(),
+                    response.message(),
+                    response.errorBody()?.string()
+                )
             }
-            mapResponseCodeToNetworkError(
-                response.code(),
-                response.message(),
-                response.errorBody()?.string()
-            )
         } catch (e: IOException) {
             // Network exceptions (no internet, timeout, etc.)
             NetworkResult.Error(NetworkError.REQUEST_FAILED, e.message ?: "Network request failed")
@@ -148,22 +160,25 @@ class NetworkDataSourceImpl(
     ): NetworkResult<T, NetworkError> {
         return try {
             val response = call()
-            response.takeIf { it.isSuccessful }?.let { response ->
-                val body = response.body()
-                if (body != null) {
-                    extractToken(body).takeUnless { it.isNullOrEmpty() }?.let { token ->
-                        tokenManager.saveAccessToken(token)
+            if (response.isSuccessful) {
+                response.let { response ->
+                    val body = response.body()
+                    if (body != null) {
+                        extractToken(body).takeUnless { it.isNullOrEmpty() }?.let { token ->
+                            tokenManager.saveAccessToken(token)
+                        }
+                        NetworkResult.Success(body)
+                    } else {
+                        NetworkResult.Error(NetworkError.UNKNOWN, "Response body is null")
                     }
-                    NetworkResult.Success(body)
-                } else {
-                    NetworkResult.Error(NetworkError.UNKNOWN, "Response body is null")
                 }
+            } else {
+                mapResponseCodeToNetworkError(
+                    response.code(),
+                    response.message(),
+                    response.errorBody()?.string()
+                )
             }
-            mapResponseCodeToNetworkError(
-                response.code(),
-                response.message(),
-                response.errorBody()?.string()
-            )
         } catch (e: IOException) {
             // Network exceptions (no internet, timeout, etc.)
             NetworkResult.Error(NetworkError.REQUEST_FAILED, e.message ?: "Network request failed")

@@ -20,4 +20,6 @@ interface ProposalRepository {
     suspend fun donate(id: String, amount: String): DonationResponse
 
     suspend fun vote (id: String, isApprove: Boolean): VoteResponse
+
+    fun checkInitialLoginStatus(): Boolean
 }
