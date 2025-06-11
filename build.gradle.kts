@@ -14,7 +14,7 @@ plugins {
     alias(libs.plugins.firebase.crashlytics) apply false
     alias(libs.plugins.firebase.perf) apply false
     alias(libs.plugins.kotlin.compose.compiler) apply false
-    alias(libs.plugins.gms) apply false
+    // alias(libs.plugins.gms) apply false
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.secrets) apply false
     alias(libs.plugins.dokka)
@@ -28,6 +28,10 @@ dependencies {
     dokka(project(":core:android"))
     dokka(project(":core:network"))
     dokka(project(":core:web3"))
+    dokka(project(":core:preferences"))
+
+    // ... Data
+    dokka(project(":data"))
 
     dokkaPlugin(libs.dokka.android.plugin)
     dokkaPlugin(libs.dokka.mermaid.plugin)
