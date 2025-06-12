@@ -2,11 +2,15 @@ package dev.kevin.core.network.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import java.math.BigInteger
 
 @Serializable
 data class ProposalRequest(
+    @SerialName("proposalText")
     val proposalText: String,
+    @SerialName("voteDurationInMinutes")
     val voteDonationInMinutes: Int,
+    @SerialName("donationDurationInMinutes")
     val donationDurationInMinutes: Int
 )
 
@@ -53,7 +57,7 @@ data class ProposalById(
     @SerialName("voterCount")
     val voterCount: Int,
     @SerialName("balance")
-    val balance: Int,
+    val balance: String,
     @SerialName("votePassed")
     val votePassed: Boolean,
     @SerialName("donationEndTime")

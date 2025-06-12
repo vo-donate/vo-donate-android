@@ -37,18 +37,18 @@ interface NetworkApi {
     @POST("/addProposal")
     suspend fun addProposal(@Body request: ProposalRequest): Response<ProposalResponse>
 
-    @GET("/proposal/:{id}")
+    @GET("/proposal/{id}")
     suspend fun getProposalById(@Path("id") id: String): Response<ProposalById>
 
     @GET("/proposals")
     suspend fun getProposals(): Response<List<ProposalListElement>>
 
-    @POST("/proposal/:{id}/vote")
+    @POST("/proposal/{id}/vote")
     suspend fun vote(@Path("id") id: String, @Body request: VoteRequest): Response<VoteResponse>
 
-    @POST("/proposal/:{id}/donation")
+    @POST("/proposal/{id}/donation")
     suspend fun donate(@Path("id") id: String, @Body request: DonationRequest): Response<DonationResponse>
 
-    @GET("/proposal/:{id}/withdraw")
+    @GET("/proposal/{id}/withdraw")
     suspend fun withdraw(@Path("id") id: String): Response<WithDrawResponse>
 }
