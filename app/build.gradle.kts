@@ -62,4 +62,9 @@ dependencies {
 
     // ... LeakCanary
     debugImplementation(libs.leakcanary.android)
+
+    // ... Test
+    implementation(libs.junit)
+    androidTestImplementation(libs.androidx.core)
+    androidTestImplementation(libs.androidx.junit)
 }
