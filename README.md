@@ -26,10 +26,10 @@
 
 | Auth | Vote and Donation 
 | :------: | :------: |
-| ![image](https://github.com/user-attachments/assets/58c3f548-bd40-41ba-83fa-bd3a747a21ba) | ![image](https://github.com/user-attachments/assets/4fb74f58-7404-4bff-abc8-0787dcedafaa) |
+| ![image](https://github.com/user-attachments/assets/faafbca3-1256-4edf-bc19-9d4fb2b7433e) | ![image](https://github.com/user-attachments/assets/f0c88329-dd50-4514-9cef-b2fe03df9523) |
 | Make a Proposal | User Information |
 | :------: | :------: |
-| ![image](https://github.com/user-attachments/assets/33e1e270-361e-4211-affe-bdec649d2a96) | ![image](https://github.com/user-attachments/assets/13fbf18b-15e8-4d4d-b275-92fdee9966bc) |
+| ![image](https://github.com/user-attachments/assets/e9622935-0a52-4c78-9a2a-e59037b6970e) | ![image](https://github.com/user-attachments/assets/b19dc3eb-71f7-4733-8a59-f404b3cd1c1d) |
 
 <br>
 
