@@ -38,4 +38,6 @@ class NetworkModule(context: Context, private val onTokenExpired: () -> Unit) {
     }
 
     fun provideTokenManager(): TokenManager = tokenManager
+
+    fun hasAccessToken(): Boolean = tokenManager.hasAccessToken()
 }
