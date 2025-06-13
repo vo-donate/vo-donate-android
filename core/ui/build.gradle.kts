@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.jetpack.ui.library)
     alias(libs.plugins.dokka)
+    alias(libs.plugins.kotlin.compose.compiler)
 }
 
 android {
