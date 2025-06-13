@@ -1,6 +1,7 @@
 package dev.kevin.data.repository
 
 import dev.kevin.core.network.model.LoginResponse
+import dev.kevin.core.network.model.ProposalById
 import dev.kevin.core.network.model.RegisterResponse
 import dev.kevin.core.network.model.UserBalanceResponse
 import dev.kevin.core.network.model.UserInfoResponse
@@ -14,6 +15,8 @@ interface AuthRepository {
     suspend fun getUserInfo() : UserInfoResponse
 
     suspend fun getUserBalance() : UserBalanceResponse
+
+    suspend fun getProposalsByUserId(userId: String) : List<ProposalById>
 
     suspend fun withdraw(id: String) : WithDrawResponse
 

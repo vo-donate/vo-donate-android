@@ -34,7 +34,7 @@ class ProposalRepositoryImpl(private val networkDataSource: NetworkDataSource) :
         networkDataSource.getProposalById(id).onSuccess {
             return it
         }
-        return ProposalById("-1", "-1", "-1", "-1", false, -1, -1, -1, false, "-1")
+        return ProposalById("-1", "-1", "-1", "-1", false, -1, -1, "-1", false, "-1")
     }
 
     override suspend fun getProposals(): List<ProposalListElement> {

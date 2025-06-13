@@ -3,6 +3,7 @@ package dev.kevin.data.repository
 import dev.kevin.core.network.data.NetworkDataSource
 import dev.kevin.core.network.model.LoginRequest
 import dev.kevin.core.network.model.LoginResponse
+import dev.kevin.core.network.model.ProposalById
 import dev.kevin.core.network.model.RegisterRequest
 import dev.kevin.core.network.model.RegisterResponse
 import dev.kevin.core.network.model.UserBalanceResponse
@@ -43,6 +44,19 @@ class AuthRepositoryImpl(private val networkDataSource: NetworkDataSource) : Aut
         }
         return UserBalanceResponse("-1", "Cannot Get Balance")
 
+    }
+
+    override suspend fun getProposalsByUserId(userId: String): List<ProposalById> {
+        val proposalsByUserId = mutableListOf<ProposalById>()
+        networkDataSource.getProposals().onSuccess { proposals ->
+            proposals.filter { userId == it.userId }.forEach { filteredProposal ->
+                networkDataSource.getProposalById(filteredProposal.id).onSuccess { proposalById ->
+                    proposalsByUserId.add(proposalById)
+                }
+            }
+            return proposalsByUserId
+        }
+        return emptyList()
     }
 
     override suspend fun withdraw(id: String): WithDrawResponse {

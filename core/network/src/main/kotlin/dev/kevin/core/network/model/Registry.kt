@@ -5,9 +5,13 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class RegisterRequest (
-    val id: String = "test",
-    val password: String = "test",
-    val name: String = "홍길동",
+    @SerialName("id")
+    val id: String,
+    @SerialName("password")
+    val password: String,
+    @SerialName("name")
+    val name: String,
+    @SerialName("introduction")
     val introduction: String = "플랫폼에 가입하는 새로운 사용자입니다",
 )
 
