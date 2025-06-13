@@ -9,7 +9,7 @@ plugins {
 
 group = "dev.kevin.build.logic"
 
-val javaVersion = libs.versions.java.get().toInt()
+val javaVersion = 17
 
 java {
     sourceCompatibility = JavaVersion.values()[javaVersion - 1]
@@ -47,13 +47,23 @@ gradlePlugin {
             id = "dev.kevin.dagger.hilt"
             implementationClass = "DaggerHiltConventionPlugin"
         }
+        /**
         register("firebase") {
             id = "dev.kevin.firebase"
             implementationClass = "FirebaseConventionPlugin"
         }
+        */
         register("dokka") {
             id = "dev.kevin.dokka"
             implementationClass = "DokkaConventionPlugin"
+        }
+        register("test") {
+            id = "dev.kevin.test"
+            implementationClass = "TestConventionPlugin"
+        }
+        register("web3") {
+            id = "dev.kevin.web3"
+            implementationClass = "Web3ConventionPlugin"
         }
     }
 }
